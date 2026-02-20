@@ -202,6 +202,18 @@
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--accent); }
+  .resume-download {
+    color: var(--accent) !important;
+    font-weight: 600;
+    padding: 6px 14px;
+    border: 1px solid var(--accent);
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .resume-download:hover {
+    background: var(--accent);
+    color: var(--bg) !important;
+  }
   .nav-cta {
     font-family: var(--font-mono);
     font-size: 12px;
@@ -572,6 +584,9 @@
     margin-top: 24px;
     letter-spacing: 0.08em;
     transition: gap 0.2s;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
   }
   .project-link:hover { gap: 14px; }
   .project-visual {
@@ -907,6 +922,17 @@
     font-weight: 600;
   }
   .contact-link.primary:hover { background: #d4f575; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,240,96,0.25); }
+  .contact-link.resume-btn {
+    background: var(--surface);
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .contact-link.resume-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-2px);
+  }
   .availability {
     display: inline-flex;
     align-items: center;
@@ -967,6 +993,7 @@
   @media (max-width: 1100px) {
     nav { padding: 20px 32px; }
     nav.scrolled { padding: 14px 32px; }
+    .nav-cta { margin-left: auto; }
     .hero { grid-template-columns: 1fr; padding: 140px 32px 80px; gap: 60px; }
     .hero-right { justify-content: flex-start; }
     .hero-stats-grid { width: 100%; max-width: 400px; }
@@ -979,7 +1006,150 @@
     footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px 32px; }
     .nav-links { display: none; }
     #contact { padding: 100px 32px; }
+    .resume-download { display: none; }
+    
+    /* Mobile menu button */
+    .mobile-menu-btn {
+      display: flex !important;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      margin-right: 16px;
+      order: 2;
+    }
+    .mobile-menu-btn span {
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      transition: all 0.3s;
+    }
+    .mobile-menu-btn.active span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+    .mobile-menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .mobile-menu-btn.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+    
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background: rgba(17, 17, 20, 0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 32px;
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+    }
+    .mobile-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-menu ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .mobile-menu a {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      display: block;
+      padding: 8px 0;
+    }
+    .mobile-menu a:hover {
+      color: var(--accent);
+    }
+    .mobile-menu .resume-download {
+      display: inline-block !important;
+      color: var(--accent) !important;
+      font-weight: 600;
+      padding: 10px 20px;
+      border: 1px solid var(--accent);
+      border-radius: 100px;
+      text-align: center;
+      margin-top: 12px;
+    }
+    .mobile-menu .resume-download:hover {
+      background: var(--accent);
+      color: var(--bg) !important;
+    }
   }
+
+  @media (max-width: 768px) {
+    .hero-name { font-size: 48px; }
+    .hero-name .line2 { font-size: 54px; }
+    .section-title { font-size: 32px; }
+    .contact-title { font-size: 48px; }
+    .hero-stats-grid { grid-template-columns: 1fr 1fr; }
+    .stat-card { padding: 20px; }
+    .project-card { padding: 32px; }
+    .skill-group { padding: 28px; }
+    .cert-card { padding: 28px; }
+    .contact-links { flex-direction: column; width: 100%; max-width: 400px; margin: 0 auto 56px; }
+    .contact-link { width: 100%; text-align: center; }
+    
+    /* Certificate modal mobile */
+    .cert-modal { padding: 20px; }
+    .cert-modal-content { padding: 12px; max-width: 95%; }
+    .cert-modal-close { top: -50px; }
+    
+    /* Loading screen mobile */
+    .loader-container { width: 100px; height: 100px; }
+    .loader-text { font-size: 11px; }
+    .loader-progress { width: 160px; }
+  }
+
+  @media (max-width: 480px) {
+    nav { padding: 16px 20px; }
+    nav.scrolled { padding: 12px 20px; }
+    .hero { padding: 120px 20px 60px; gap: 40px; }
+    section { padding: 60px 20px; }
+    .hero-name { font-size: 40px; }
+    .hero-name .line2 { font-size: 46px; }
+    .section-title { font-size: 28px; }
+    .contact-title { font-size: 36px; line-height: 1.1; }
+    .hero-stats-grid { gap: 1px; }
+    .stat-card { padding: 16px; }
+    .stat-num { font-size: 28px; }
+    .project-card { padding: 24px; }
+    .skill-group { padding: 20px; }
+    .cert-card { padding: 20px; }
+    .exp-card { padding: 24px; }
+    .achievement-card { padding: 28px; }
+    .nav-cta { padding: 8px 18px; font-size: 11px; }
+    .footer-text { font-size: 10px; }
+    .footer-quote { font-size: 11px; }
+    
+    /* Hide custom cursor on mobile */
+    .cursor, .cursor-ring { display: none; }
+    body { cursor: auto !important; }
+    .project-card { cursor: pointer !important; }
+    a, button { cursor: pointer !important; }
+  }
+
+  /* Desktop only - hide mobile menu button */
+  .mobile-menu-btn {
+    display: none;
+  }
+
 </style>
 </head>
 <body>
@@ -1009,10 +1179,30 @@
     <li><a href="#projects">Work</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#achievements">Awards</a></li>
+    <li><a href="#certifications">Certificates</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="resume.pdf" target="_blank" class="resume-download">Resume ↓</a></li>
   </ul>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
   <a href="mailto:aakashrajendran2004@gmail.com" class="nav-cta">Hire Me</a>
 </nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#skills" onclick="closeMobileMenu()">Skills</a></li>
+    <li><a href="#projects" onclick="closeMobileMenu()">Work</a></li>
+    <li><a href="#experience" onclick="closeMobileMenu()">Experience</a></li>
+    <li><a href="#achievements" onclick="closeMobileMenu()">Awards</a></li>
+    <li><a href="#certifications" onclick="closeMobileMenu()">Certificates</a></li>
+    <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+    <li><a href="resume.pdf" target="_blank" class="resume-download">Resume ↓</a></li>
+  </ul>
+</div>
 
 <!-- Hero -->
 <section class="hero">
@@ -1094,44 +1284,51 @@
       </div>
     </div>
     <div class="skill-group">
-      <div class="skill-group-label">Backend</div>
+      <div class="skill-group-label">Backend & APIs</div>
       <div class="skill-tags">
         <span class="skill-tag">Node.js</span>
         <span class="skill-tag">Express.js</span>
         <span class="skill-tag">FastAPI</span>
         <span class="skill-tag">RESTful APIs</span>
+        <span class="skill-tag">OpenAPI/Swagger</span>
         <span class="skill-tag">WebSocket</span>
+        <span class="skill-tag">Dropwizard</span>
       </div>
     </div>
     <div class="skill-group">
-      <div class="skill-group-label">Databases</div>
+      <div class="skill-group-label">Cloud & Infrastructure</div>
+      <div class="skill-tags">
+        <span class="skill-tag">AWS</span>
+        <span class="skill-tag">GCP</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Kubernetes</span>
+        <span class="skill-tag">Vercel</span>
+        <span class="skill-tag">Multi-Cloud</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Databases & Streaming</div>
       <div class="skill-tags">
         <span class="skill-tag">MongoDB</span>
         <span class="skill-tag">PostgreSQL</span>
+        <span class="skill-tag">DynamoDB</span>
+        <span class="skill-tag">Redshift</span>
         <span class="skill-tag">Firebase</span>
+        <span class="skill-tag">Kinesis</span>
         <span class="skill-tag">Atlas Vector Search</span>
       </div>
     </div>
     <div class="skill-group">
-      <div class="skill-group-label">AI / ML</div>
+      <div class="skill-group-label">AI/ML & Tools</div>
       <div class="skill-tags">
         <span class="skill-tag">Gemini 1.5 Pro</span>
         <span class="skill-tag">ML Models</span>
         <span class="skill-tag">NLP</span>
-        <span class="skill-tag">Semantic Analysis</span>
-        <span class="skill-tag">AI Integration</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-label">Tools & Platforms</div>
-      <div class="skill-tags">
         <span class="skill-tag">Git</span>
         <span class="skill-tag">Linux</span>
-        <span class="skill-tag">Vercel</span>
         <span class="skill-tag">Postman</span>
         <span class="skill-tag">OAuth 2.0</span>
-        <span class="skill-tag">Twilio API</span>
-        <span class="skill-tag">Gmail API</span>
+        <span class="skill-tag">Microservices</span>
       </div>
     </div>
   </div>
@@ -1183,6 +1380,7 @@
           <span class="stack-tag">Python</span>
           <span class="stack-tag">ML Models</span>
         </div>
+        <a href="https://truthguard-io.vercel.app" class="project-link" target="_blank">View Live →</a>
       </div>
       <div class="project-visual">
         <div class="visual-icon">🛡️</div>
@@ -1533,6 +1731,7 @@
     <a href="tel:+919655667171" class="contact-link">+91 96556 67171</a>
     <a href="https://github.com/Akashrrrrd" class="contact-link" target="_blank">GitHub</a>
     <a href="https://www.linkedin.com/in/aaakashrajendran" class="contact-link" target="_blank">LinkedIn</a>
+    <a href="resume.pdf" target="_blank" class="contact-link resume-btn">Download Resume ↓</a>
   </div>
   <div class="availability">
     <div class="avail-dot"></div>
@@ -1569,7 +1768,7 @@
     requestAnimationFrame(animCursor);
   }
   animCursor();
-  document.querySelectorAll('a, button, .project-card, .stat-card').forEach(el => {
+  document.querySelectorAll('a, button, .project-card, .stat-card, .cert-card').forEach(el => {
     el.addEventListener('mouseenter', () => {
       cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
       ring.style.transform = 'translate(-50%,-50%) scale(1.4)';
@@ -1630,6 +1829,28 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeCertModal();
+    }
+  });
+
+  // Mobile menu toggle
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('mobileMenuBtn');
+    menu.classList.toggle('active');
+    btn.classList.toggle('active');
+  }
+
+  function closeMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('mobileMenuBtn');
+    menu.classList.remove('active');
+    btn.classList.remove('active');
+  }
+
+  // Close mobile menu on scroll
+  window.addEventListener('scroll', () => {
+    if (window.innerWidth <= 1100) {
+      closeMobileMenu();
     }
   });
 </script>
