@@ -730,8 +730,9 @@
     border: 1px solid var(--border);
     padding: 36px;
     transition: all 0.3s;
+    cursor: pointer;
   }
-  .cert-card:hover { border-color: var(--border-hover); background: var(--surface2); }
+  .cert-card:hover { border-color: var(--border-hover); background: var(--surface2); transform: translateY(-4px); }
   .cert-issuer {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -750,6 +751,94 @@
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--muted);
+  }
+  .cert-view-badge {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 12px;
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .cert-card:hover .cert-view-badge {
+    opacity: 1;
+  }
+
+  /* Certificate Modal */
+  .cert-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 11, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 40px;
+  }
+  .cert-modal.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .cert-modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+  .cert-modal.active .cert-modal-content {
+    transform: scale(1);
+  }
+  .cert-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 300;
+  }
+  .cert-modal-close:hover {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+    transform: rotate(90deg);
+  }
+  .cert-modal-image {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  .cert-modal-title {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 16px;
+    text-align: center;
   }
 
   /* Contact */
@@ -1387,38 +1476,53 @@
   </div>
 
   <div class="certs-grid">
-    <div class="cert-card fade-in">
+    <div class="cert-card fade-in" onclick="openCertModal('Cert-1.jpg', 'Digital Skills: Artificial Intelligence')">
       <div class="cert-issuer">Accenture · FutureLearn</div>
       <div class="cert-name">Digital Skills: Artificial Intelligence</div>
       <div class="cert-domain">AI & Machine Learning</div>
+      <div class="cert-view-badge">Click to View Certificate →</div>
     </div>
-    <div class="cert-card fade-in">
+    <div class="cert-card fade-in" onclick="openCertModal('Cert-2.jpg', 'Networks & Security Fundamentals')">
       <div class="cert-issuer">Cisco Networking Academy</div>
       <div class="cert-name">Networks & Security Fundamentals</div>
       <div class="cert-domain">Cybersecurity</div>
+      <div class="cert-view-badge">Click to View Certificate →</div>
     </div>
-    <div class="cert-card fade-in">
-      <div class="cert-issuer">MongoDB University</div>
-      <div class="cert-name">MongoDB for Developers</div>
-      <div class="cert-domain">Database Management</div>
+    <div class="cert-card fade-in" onclick="openCertModal('Cert-3.jpg', 'AI for Beginners')">
+      <div class="cert-issuer">HP LIFE</div>
+      <div class="cert-name">AI for Beginners</div>
+      <div class="cert-domain">AI & Machine Learning</div>
+      <div class="cert-view-badge">Click to View Certificate →</div>
     </div>
-    <div class="cert-card fade-in">
+    <div class="cert-card fade-in" onclick="openCertModal('Cert-4.jpg', 'AI Upskilling Certificate')">
       <div class="cert-issuer">Qualcomm</div>
       <div class="cert-name">AI Upskilling Certificate</div>
       <div class="cert-domain">AI & Machine Learning</div>
+      <div class="cert-view-badge">Click to View Certificate →</div>
     </div>
-    <div class="cert-card fade-in">
-      <div class="cert-issuer">TCS · Forage</div>
-      <div class="cert-name">Cybersecurity Analyst Job Simulation</div>
-      <div class="cert-domain">Cybersecurity</div>
+    <div class="cert-card fade-in" onclick="openCertModal('Cert-5.jpg', 'Software Engineering Job Simulation')">
+      <div class="cert-issuer">JPMorgan Chase & Co · Forage</div>
+      <div class="cert-name">Software Engineering Job Simulation</div>
+      <div class="cert-domain">Software Engineering</div>
+      <div class="cert-view-badge">Click to View Certificate →</div>
     </div>
-    <div class="cert-card fade-in">
+    <div class="cert-card fade-in" onclick="openCertModal('Cert-6.jpg', 'AWS Cloud Practitioner Essentials')">
       <div class="cert-issuer">AWS Skill Builder</div>
       <div class="cert-name">AWS Cloud Practitioner Essentials</div>
       <div class="cert-domain">Cloud Computing</div>
+      <div class="cert-view-badge">Click to View Certificate →</div>
     </div>
   </div>
 </section>
+
+<!-- Certificate Modal -->
+<div class="cert-modal" id="certModal" onclick="closeCertModal(event)">
+  <div class="cert-modal-content" onclick="event.stopPropagation()">
+    <button class="cert-modal-close" onclick="closeCertModal()">&times;</button>
+    <img src="" alt="Certificate" class="cert-modal-image" id="certModalImage">
+    <div class="cert-modal-title" id="certModalTitle"></div>
+  </div>
+</div>
 
 <!-- Contact -->
 <section id="contact">
@@ -1500,6 +1604,34 @@
     card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
     card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
   }
+
+  // Certificate Modal
+  function openCertModal(imagePath, title) {
+    const modal = document.getElementById('certModal');
+    const modalImage = document.getElementById('certModalImage');
+    const modalTitle = document.getElementById('certModalTitle');
+    
+    modalImage.src = imagePath;
+    modalTitle.textContent = title;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCertModal(event) {
+    if (event && event.target.classList.contains('cert-modal-content')) {
+      return;
+    }
+    const modal = document.getElementById('certModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeCertModal();
+    }
+  });
 </script>
 </body>
 </html>
