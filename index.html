@@ -191,7 +191,8 @@
     text-decoration: none;
   }
   .nav-logo span { color: var(--accent); }
-  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links { display: flex; gap: 40px; list-style: none; align-items: center; }
+  .nav-links li { display: inline-block; }
   .nav-links a {
     font-family: var(--font-mono);
     font-size: 12px;
@@ -200,8 +201,12 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     transition: color 0.2s;
+    border: none;
+    outline: none;
   }
   .nav-links a:hover { color: var(--accent); }
+  .nav-links a:visited { color: var(--muted); }
+  .nav-links a:active { color: var(--accent); }
   .resume-download {
     color: var(--accent) !important;
     font-weight: 600;
@@ -1145,9 +1150,21 @@
     a, button { cursor: pointer !important; }
   }
 
-  /* Desktop only - hide mobile menu button */
+  /* Desktop only - hide mobile menu button and mobile menu */
   .mobile-menu-btn {
     display: none;
+  }
+  .mobile-menu {
+    display: none;
+  }
+  
+  @media (min-width: 1101px) {
+    .mobile-menu-btn {
+      display: none !important;
+    }
+    .mobile-menu {
+      display: none !important;
+    }
   }
 
 </style>
