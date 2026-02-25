@@ -3,7 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Akash R — Full Stack Developer</title>
+<title>Akash R — Full Stack Developer | AI/ML Expert</title>
+
+<!-- SEO Meta Tags -->
+<meta name="description" content="Akash R - Full Stack Developer with expertise in AI/ML, Cloud (AWS/GCP), and Real-time Systems. 8+ projects serving 5K+ users, Hackathon winner, National finalist.">
+<meta name="keywords" content="Full Stack Developer, AI/ML Engineer, React, Node.js, Python, AWS, GCP, Docker, Kubernetes, Next.js, TypeScript, Portfolio">
+<meta name="author" content="Akash Rajendran">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://github.com/Akashrrrrd/DP">
+<meta property="og:title" content="Akash R — Full Stack Developer | AI/ML Expert">
+<meta property="og:description" content="Full Stack Developer specializing in AI/ML integration, Cloud infrastructure, and Real-time Systems. Building platforms serving 5,000+ users.">
+<meta property="og:image" content="https://github.com/Akashrrrrd/DP/raw/main/portfolio-preview.jpg">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://github.com/Akashrrrrd/DP">
+<meta property="twitter:title" content="Akash R — Full Stack Developer | AI/ML Expert">
+<meta property="twitter:description" content="Full Stack Developer specializing in AI/ML integration, Cloud infrastructure, and Real-time Systems. Building platforms serving 5,000+ users.">
+<meta property="twitter:image" content="https://github.com/Akashrrrrd/DP/raw/main/portfolio-preview.jpg">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90' fill='%23c8f060'>A</text></svg>">
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
@@ -423,9 +456,11 @@
   .stat-num {
     font-size: 38px;
     font-weight: 800;
-    line-height: 1;
+    line-height: 1.2;
     margin-bottom: 6px;
     letter-spacing: -1px;
+    word-break: keep-all;
+    white-space: nowrap;
   }
   .stat-num .accent { color: var(--accent); }
   .stat-label {
@@ -922,6 +957,7 @@
     border-radius: 8px;
     display: block;
     background: var(--surface2);
+    loading: lazy;
   }
   .cert-modal-image:not([src]), .cert-modal-image[src=""] {
     min-height: 400px;
@@ -1246,7 +1282,8 @@
     .contact-title { font-size: 36px; line-height: 1.1; }
     .hero-stats-grid { gap: 1px; }
     .stat-card { padding: 16px; }
-    .stat-num { font-size: 28px; }
+    .stat-num { font-size: 24px; }
+    .stat-label { font-size: 9px; }
     .project-card { padding: 24px; }
     .skill-group { padding: 20px; }
     .cert-card { padding: 20px; }
@@ -1356,7 +1393,7 @@
   <div class="hero-right fade-in" style="transition-delay:0.15s">
     <div class="hero-stats-grid">
       <div class="stat-card">
-        <div class="stat-num">5<span class="accent">K+</span></div>
+        <div class="stat-num">2<span class="accent">K+</span></div>
         <div class="stat-label">Users Served</div>
       </div>
       <div class="stat-card">
@@ -1464,7 +1501,7 @@
       <div class="section-num">02 / 05</div>
       <h2 class="section-title">Selected <em>Work</em></h2>
     </div>
-    <div class="section-sub">7 Signature Projects</div>
+    <div class="section-sub">8 Signature Projects</div>
   </div>
 
   <div class="projects-grid">
@@ -1993,6 +2030,7 @@
     const cursorRing = document.getElementById('cursorRing');
     
     modalImage.src = imagePath;
+    modalImage.loading = 'lazy';
     modalTitle.textContent = title;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
