@@ -528,11 +528,9 @@
   }
   .project-card:hover { border-color: var(--border-hover); background: var(--surface2); }
   .project-card.featured {
-    grid-column: span 2;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
+    grid-column: span 1;
+    display: block;
+    padding: 44px;
   }
   .project-card::after {
     content: '';
@@ -549,6 +547,9 @@
     color: var(--muted);
     letter-spacing: 0.15em;
     margin-bottom: 20px;
+  }
+  .project-body {
+    max-width: 900px;
   }
   .project-title {
     font-size: 26px;
@@ -622,7 +623,7 @@
     background: var(--surface2);
     border-radius: 12px;
     border: 1px solid var(--border);
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -920,6 +921,19 @@
     object-fit: contain;
     border-radius: 8px;
     display: block;
+    background: var(--surface2);
+  }
+  .cert-modal-image:not([src]), .cert-modal-image[src=""] {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cert-modal-image:not([src])::before, .cert-modal-image[src=""]::before {
+    content: "Image not found";
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 14px;
   }
   .cert-modal-title {
     font-family: var(--font-mono);
@@ -1350,7 +1364,7 @@
         <div class="stat-label">AI Accuracy</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">7<span class="accent">+</span></div>
+        <div class="stat-num">8<span class="accent">+</span></div>
         <div class="stat-label">Major Projects</div>
       </div>
       <div class="stat-card">
@@ -1454,7 +1468,7 @@
   </div>
 
   <div class="projects-grid">
-    <!-- Featured -->
+    <!-- Featured - TruthGuard -->
     <div class="project-card featured fade-in" onmousemove="trackMouse(event, this)">
       <div class="project-body">
         <div class="project-index">PROJECT 01 · FEATURED</div>
@@ -1496,9 +1510,27 @@
       </div>
     </div>
 
-    <!-- LearnTrack -->
+    <!-- MediHack -->
     <div class="project-card fade-in" onmousemove="trackMouse(event, this)">
       <div class="project-index">PROJECT 02</div>
+      <h3 class="project-title">MediHack</h3>
+      <div class="project-tagline">AI-Powered Hospital Wait-Time Optimizer</div>
+      <p class="project-desc">
+        An intelligent healthcare solution leveraging GPT-4 to optimize hospital wait times with real-time analytics, comprehensive patient management, and predictive scheduling algorithms.
+      </p>
+      <div class="project-stack">
+        <span class="stack-tag">Next.js 14</span>
+        <span class="stack-tag">TypeScript</span>
+        <span class="stack-tag">PostgreSQL</span>
+        <span class="stack-tag">OpenAI GPT-4</span>
+        <span class="stack-tag">Tailwind CSS</span>
+      </div>
+      <a href="https://medihack-three.vercel.app" class="project-link" target="_blank">View Live →</a>
+    </div>
+
+    <!-- LearnTrack -->
+    <div class="project-card fade-in" onmousemove="trackMouse(event, this)">
+      <div class="project-index">PROJECT 03</div>
       <h3 class="project-title">LearnTrack</h3>
       <div class="project-tagline">Multiportal Educational Platform</div>
       <p class="project-desc">
@@ -1525,7 +1557,7 @@
 
     <!-- SyncOps -->
     <div class="project-card fade-in" onmousemove="trackMouse(event, this)">
-      <div class="project-index">PROJECT 03</div>
+      <div class="project-index">PROJECT 04</div>
       <h3 class="project-title">SyncOps</h3>
       <div class="project-tagline">High-Performance Data Pipeline Platform</div>
       <p class="project-desc">
@@ -1556,7 +1588,7 @@
 
     <!-- MailSense -->
     <div class="project-card fade-in" onmousemove="trackMouse(event, this)">
-      <div class="project-index">PROJECT 04</div>
+      <div class="project-index">PROJECT 05</div>
       <h3 class="project-title">MailSense</h3>
       <div class="project-tagline">Intelligent Email Management System</div>
       <p class="project-desc">
@@ -1583,7 +1615,7 @@
 
     <!-- AgroConnect -->
     <div class="project-card fade-in" onmousemove="trackMouse(event, this)">
-      <div class="project-index">PROJECT 05</div>
+      <div class="project-index">PROJECT 06</div>
       <h3 class="project-title">AgroConnect</h3>
       <div class="project-tagline">Farm-to-Consumer Marketplace</div>
       <p class="project-desc">
@@ -1600,7 +1632,7 @@
 
     <!-- OpenPrep -->
     <div class="project-card fade-in" onmousemove="trackMouse(event, this)">
-      <div class="project-index">PROJECT 06</div>
+      <div class="project-index">PROJECT 07</div>
       <h3 class="project-title">OpenPrep</h3>
       <div class="project-tagline">Placement Preparation Hub</div>
       <p class="project-desc">
@@ -1623,7 +1655,7 @@
 
     <!-- sVIOS Technologies -->
     <div class="project-card fade-in" onmousemove="trackMouse(event, this)">
-      <div class="project-index">PROJECT 07</div>
+      <div class="project-index">PROJECT 08</div>
       <h3 class="project-title">sVIOS Technologies</h3>
       <div class="project-tagline">E-Learning Platform</div>
       <p class="project-desc">
@@ -1651,7 +1683,7 @@
   </div>
 
   <div class="exp-list">
-    <div class="exp-card fade-in" onclick="openInternModal('Int-1.jpg', 'GrrowUp - Full Stack Developer Intern')">
+    <div class="exp-card fade-in" onclick="openInternModal('Pro-1.jpg', 'GrrowUp - Full Stack Developer Intern')">
       <div class="exp-left">
         <div class="exp-company">GrrowUp</div>
         <div class="exp-role">Full Stack Developer Intern</div>
